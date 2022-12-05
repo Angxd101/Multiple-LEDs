@@ -13,31 +13,37 @@ class MyWindow(QMainWindow):
         super(MyWindow, self).__init__()
         self.setGeometry(720, 290, 250, 250)
         self.setWindowTitle("TASK 5.2C")
+        self.setStyleSheet("background-color: lightgray")
         self.initUI()
         
     def initUI(self):
         self.label = QtWidgets.QLabel(self)
         self.label.setText("Select the LED you want to light up.")
+        self.label.setGeometry(20,30,95,20)
         self.label.adjustSize()
         
         self.red = QtWidgets.QRadioButton(self)
-        self.red.setGeometry(50, 50, 95, 20)
+        self.red.setGeometry(70, 50, 95, 20)
         self.red.setText("RED")
+        self.red.setStyleSheet("background-color: red")
         self.red.toggled.connect(self.redselected)
         
         self.blue = QtWidgets.QRadioButton(self)
-        self.blue.setGeometry(50, 70, 95, 20)
+        self.blue.setGeometry(70, 70, 95, 20)
         self.blue.setText("BLUE")
+        self.blue.setStyleSheet("background-color: lightblue")
         self.blue.toggled.connect(self.blueselected)
         
         self.green = QtWidgets.QRadioButton(self)
-        self.green.setGeometry(50, 90, 95, 20)
+        self.green.setGeometry(70, 90, 95, 20)
         self.green.setText("GREEN")
+        self.green.setStyleSheet("background-color: lightgreen")
         self.green.toggled.connect(self.greenselected)
         
         self.off = QtWidgets.QRadioButton(self)
-        self.off.setGeometry(50, 150, 95, 20)
+        self.off.setGeometry(70, 150, 95, 20)
         self.off.setText("Turn off all LEDs")
+        self.off.adjustSize()
         self.off.toggled.connect(self.turn_off_all_LED)
     
     def redselected(self, selected):
@@ -57,6 +63,7 @@ class MyWindow(QMainWindow):
             GPIO.output(12, True)
             GPIO.output(11, False)
             GPIO.output(10, False)
+            
     def turn_off_all_LED(self, selected):
         if selected:
             GPIO.output(10, False)
